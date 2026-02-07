@@ -71,6 +71,17 @@ public class StudentsController : Controller
             return NotFound();
         studentToUpdate.name = student.name;
         return Ok();
+    } 
+    
+    [HttpPost("upload")]
+    public ActionResult UploadFile(IFormFile file)
+    {
+        var filePath = Path.Combine(Directory.GetCurrentDirectory(), "Files", file.FileName);
+        using (var stream = new FileStream(filePath, FileMode.Create))
+        {
+            file.CopyTo(stream);
+        }
+        return Ok(filePath);
     }
     
     [HttpGet("remove")]
