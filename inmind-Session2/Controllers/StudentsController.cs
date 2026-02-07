@@ -62,8 +62,16 @@ public class StudentsController : Controller
             return BadRequest("Unknown Language");
         }
     }
-    
-    
+
+    [HttpPost("update/{id:int}")]
+    public ActionResult UpdateStudent(int id, [FromBody] UpdateStudentNameDTO student)
+    {
+        Student studentToUpdate = ListOfStudents.FirstOrDefault(x => x.Id == id);
+        if (studentToUpdate == null)
+            return NotFound();
+        studentToUpdate.name = student.name;
+        return Ok();
+    }
     
     [HttpGet("remove")]
     public ActionResult<Student> DeleteStudentById([FromQuery] int Id)
@@ -76,5 +84,4 @@ public class StudentsController : Controller
         }
         return NoContent();
     }
-
 }
