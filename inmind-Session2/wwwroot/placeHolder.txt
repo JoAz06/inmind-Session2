@@ -1,0 +1,1 @@
+This file is just so that the Files folder is added to Git. A smarter way would be to check if Files exist if not create it.
