@@ -35,6 +35,7 @@ public class StudentsController : Controller
         }
         return NotFound();
     }
+    
     [HttpGet("search")]
     public ActionResult<List<Student>> SearchStudents([FromQuery] string name)
     {
@@ -60,6 +61,20 @@ public class StudentsController : Controller
         {
             return BadRequest("Unknown Language");
         }
+    }
+    
+    
+    
+    [HttpGet("remove")]
+    public ActionResult<Student> DeleteStudentById([FromQuery] int Id)
+    {
+        var student = ListOfStudents.FirstOrDefault(x => x.Id == Id);
+        if (student != null)
+        {
+            ListOfStudents.Remove(student);
+            return Ok();
+        }
+        return NoContent();
     }
 
 }
