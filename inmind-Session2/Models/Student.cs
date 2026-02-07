@@ -6,4 +6,10 @@ public class Student
     [Required]
     public string name { get; set; }
     //iform file?
+
+    public Student(int Id, string name)
+    {
+        this.Id = Id;
+        this.name = name;
+    }
 }
